@@ -42,7 +42,7 @@ public class GUI extends JFrame {
         // Make frame transparent
         setOpacity(0.9f);
 
-        // Set background color with transparency support
+        // Set background color with transparency supportf
         setBackground(new Color(0, 0, 0, 144));
 
         // Use a dark theme background
@@ -65,7 +65,7 @@ public class GUI extends JFrame {
         outputArea.setBorder(new EmptyBorder(10, 10, 10, 10));
         outputArea.setLineWrap(true);
         outputArea.setWrapStyleWord(true);
-        outputArea.setText("Welcome to GUI!\nOutput will appear here...");
+        outputArea.setText("Welcome to the LOG Manager!\nOutput will appear here...");
 
         // Input field at bottom
         inputField = new JTextField();
@@ -163,7 +163,7 @@ public class GUI extends JFrame {
         titleBar.setPreferredSize(new Dimension(0, 30));
 
         // Title label
-        JLabel titleLabel = new JLabel("GUI Application");
+        JLabel titleLabel = new JLabel("LOG Handler");
         titleLabel.setForeground(new Color(220, 220, 220));
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
         titleLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
@@ -346,11 +346,4 @@ public class GUI extends JFrame {
         inputField.setText(text);
     }
 
-    // Main method for testing
-    public static void main(String[] args) {
-
-        SwingUtilities.invokeLater(() -> {
-            new GUI();
-        });
-    }
 }
