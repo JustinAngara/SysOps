@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### PLEASE DON'T HACK ###
+xmljson
+/xmljson/
+/xmljson
+xml-maps-proj-19d908ac11ac
