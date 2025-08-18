@@ -3,7 +3,9 @@ project(systemlib_jni)
 
 find_package(JNI REQUIRED)
 
-add_library(systemlib SHARED ${CMAKE_CURRENT_SOURCE_DIR}/systemlib.cpp)
+add_library(systemlib SHARED ${CMAKE_CURRENT_SOURCE_DIR}/systemlib.cpp
+        action_handler.cpp
+        action_handler.h)
 target_include_directories(systemlib PRIVATE ${JNI_INCLUDE_DIRS})
 
 # Name without "lib" prefix on Windows

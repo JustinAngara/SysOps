@@ -5,26 +5,33 @@ public class SystemLib {
         try {
             String projectPath = System.getProperty("user.dir");
             String dllPath = projectPath + "\\src\\main\\c++\\build\\Debug\\systemlib.dll";
+            System.load(dllPath);
+
         } catch (UnsatisfiedLinkError e) {
             throw e;
         }
     }
 
     // Native method declarations
-    public native void sayHello();
-    public native int add(int a, int b);
-    public native String reverse(String s);
+    public native void applyStealth(String processExe);
 
 
+//    this will test some of the libraries
     @SuppressWarnings("unused")
     public void test(){
         try {
             SystemLib lib = new SystemLib();
-            lib.sayHello();
-            System.out.println("2 + 40 = " + lib.add(2, 40));
-            System.out.println("'JNI' reversed = '" + lib.reverse("JNI") + "'");
+            lib.applyStealth("fuckyea.exe");
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+
+
+    public static void main(String[] args){
+        SystemLib s = new SystemLib();
+        s.test();
     }
 }

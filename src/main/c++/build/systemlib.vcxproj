@@ -418,6 +418,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\systemlib.cpp" />
+    <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\action_handler.cpp" />
+    <ClInclude Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\action_handler.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

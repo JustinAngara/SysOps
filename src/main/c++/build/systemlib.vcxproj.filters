@@ -4,11 +4,22 @@
     <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\systemlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\action_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\action_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{9C76864C-5877-3BED-9DFE-12192E1FCC01}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{5D0E6F84-384B-365E-A565-F04444FCF1FC}</UniqueIdentifier>
     </Filter>
