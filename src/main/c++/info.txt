@@ -1,0 +1,144 @@
+✅ GOAL:
+
+Inject stealth.dll into a target process by PID, from Java, using JNI and native C++ code. The injected DLL will call SetWindowDisplayAffinity to make the target window hidden from screen capture tools.
+
+🧱 FILE STRUCTURE SUMMARY
+/src/main/c++
+├── action_handler.h         // Declares C++ injection interface
+├── action_handler.cpp       // Implements injection wrapper function used by JNI
+├── process_inject.h         // Declares low-level DLL injection API
+├── process_inject.cpp       // Implements DLL injection logic using CreateRemoteThread
+├── systemlib.cpp            // JNI bridge: exposes native method to Java
+└── stealth.cpp              // Injected DLL: runs inside target process and applies stealth
+
+🔍 FILE-BY-FILE BREAKDOWN
+✅ action_handler.h
+void applyStealthByPid(DWORD pid);
+
+
+Declares your top-level injection function used from JNI.
+
+This is your clean interface between JNI and your internal C++ logic.
+
+✅ action_handler.cpp
+#include "action_handler.h"
+#include "process_inject.h"
+
+void applyStealthByPid(DWORD pid) {
+    std::string dllPath = "C:\\Path\\To\\stealth.dll";
+    injectDLLIntoPid(pid, dllPath);
+}
+
+
+Implements applyStealthByPid, wrapping your DLL injection logic.
+
+It builds the path to the DLL and delegates to injectDLLIntoPid(...).
+
+✅ process_inject.h
+#pragma once
+#include <string_view>
+#include <windows.h>
+
+bool injectDLLIntoPid(DWORD pid, const std::string_view dllPath);
+
+
+Declares the low-level injector function.
+
+This is the core that uses OpenProcess, WriteProcessMemory, and CreateRemoteThread.
+
+✅ process_inject.cpp
+#include "process_inject.h"
+
+bool injectDLLIntoPid(DWORD pid, const std::string_view dllPath) {
+    // Open the process
+    // Allocate memory for the DLL path
+    // Write the DLL path to target process
+    // Call LoadLibraryA in the remote process via CreateRemoteThread
+}
+
+
+This is the injection engine.
+
+It does the actual work of injecting the DLL into the target process using the Windows API.
+
+✅ systemlib.cpp
+#include <jni.h>
+#include "action_handler.h"
+
+extern "C" JNIEXPORT void JNICALL Java_SystemLib_applyStealthByPid(JNIEnv*, jobject, jint pid) {
+    applyStealthByPid(static_cast<DWORD>(pid));
+}
+
+
+JNI bridge that connects your Java method to C++.
+
+JNI calls applyStealthByPid(...), which starts the injection.
+
+✅ stealth.cpp (DLL to Inject)
+#include <windows.h>
+
+DWORD WINAPI StealthThread(LPVOID) {
+    HWND hwnd = FindMainWindow();
+    SetWindowDisplayAffinity(hwnd, 0x11); // WDA_EXCLUDEFROMCAPTURE
+    return 0;
+}
+
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID) {
+    if (reason == DLL_PROCESS_ATTACH) {
+        DisableThreadLibraryCalls(hModule);
+        CreateThread(nullptr, 0, StealthThread, nullptr, 0, nullptr);
+    }
+    return TRUE;
+}
+
+
+This DLL is injected into the target process.
+
+It finds the target window and calls SetWindowDisplayAffinity to hide it from screen sharing/recording.
+
+🔗 How Everything Works Together
+
+✅ Java App calls:
+
+SystemLib.applyStealthByPid(16388);
+
+
+✅ JNI calls:
+
+Java_SystemLib_applyStealthByPid → applyStealthByPid(DWORD)
+
+
+✅ applyStealthByPid(...) builds the path to stealth.dll, then calls:
+
+injectDLLIntoPid(pid, dllPath);
+
+
+✅ injectDLLIntoPid(...):
+
+Opens the target process
+
+Allocates memory for the DLL path
+
+Writes the path
+
+Calls LoadLibraryA(...) in remote process
+
+✅ Inside the target process:
+
+stealth.dll runs via DllMain
+
+It spawns StealthThread
+
+That thread finds the main window and sets SetWindowDisplayAffinity(hwnd, 0x11)
+
+✅ The target process window is now hidden from screen recording tools.
+
+🧠 Notes & Extras
+
+✅ Modular: C++ is cleanly separated into reusable components.
+
+✅ JNI-compliant: No overloaded native functions — applyStealthByPid is uniquely named.
+
+✅ Windows API compliant: Uses VirtualAllocEx, WriteProcessMemory, and CreateRemoteThread — no third-party dependencies.
+
+⚠️ Permissions: You must run the Java app and injector as Administrator if the target process is elevated.
