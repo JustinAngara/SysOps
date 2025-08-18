@@ -1,14 +1,17 @@
+cmake_minimum_required(VERSION 3.15)
+
 add_library(memory_dumper SHARED memory_dumper.cpp)
 
-target_include_directories(memory_dumper PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+# Ensure the output directory exists
+file(MAKE_DIRECTORY "${CMAKE_SOURCE_DIR}/target/native")
 
-if (MSVC)
-    target_compile_options(memory_dumper PRIVATE /std:c++17 /EHsc /MT)
-endif()
-
-set_target_properties(memory_dumper PROPERTIES PREFIX "")
-
-add_custom_command(TARGET memory_dumper POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_SOURCE_DIR}/target/native"
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:memory_dumper>" "${CMAKE_SOURCE_DIR}/target/native"
+# Set the output location for all build configurations
+set_target_properties(memory_dumper PROPERTIES
+        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/target/native"
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/target/native"
+        LIBRARY_OUTPUT_DIRECTORY_DEBUG "${CMAKE_SOURCE_DIR}/target/native"
+        RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_SOURCE_DIR}/target/native"
+        LIBRARY_OUTPUT_DIRECTORY_RELEASE "${CMAKE_SOURCE_DIR}/target/native"
+        RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_SOURCE_DIR}/target/native"
+        PREFIX ""  # removes 'lib' prefix on Unix systems (optional for consistency)
 )

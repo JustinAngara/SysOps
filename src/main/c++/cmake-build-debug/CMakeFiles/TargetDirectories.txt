@@ -1,0 +1,14 @@
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/systemlib/CMakeFiles/systemlib.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/systemlib/CMakeFiles/edit_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/systemlib/CMakeFiles/rebuild_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/stealth/CMakeFiles/stealth.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/stealth/CMakeFiles/edit_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/stealth/CMakeFiles/rebuild_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/unstealth/CMakeFiles/unstealth.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/unstealth/CMakeFiles/edit_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/unstealth/CMakeFiles/rebuild_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/memory_dumper/CMakeFiles/memory_dumper.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/memory_dumper/CMakeFiles/edit_cache.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug/src/memory_dumper/CMakeFiles/rebuild_cache.dir

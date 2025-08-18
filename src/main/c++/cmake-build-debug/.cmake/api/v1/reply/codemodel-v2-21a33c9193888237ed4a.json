@@ -1,0 +1,151 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "src/systemlib",
+					"jsonFile" : "directory-src.systemlib-Debug-c81831b6d33c130a4ad0.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/systemlib",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"build" : "src/stealth",
+					"jsonFile" : "directory-src.stealth-Debug-9437d71100903769df58.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/stealth",
+					"targetIndexes" : 
+					[
+						1
+					]
+				},
+				{
+					"build" : "src/unstealth",
+					"jsonFile" : "directory-src.unstealth-Debug-6df66a2ad4d40a1ecd4a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/unstealth",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"build" : "src/memory_dumper",
+					"jsonFile" : "directory-src.memory_dumper-Debug-b1c575e40015a78d32ac.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.15"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 0,
+					"source" : "src/memory_dumper",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					],
+					"name" : "SysOpsAll",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 4,
+					"id" : "memory_dumper::@21b727fdb3e87899c106",
+					"jsonFile" : "target-memory_dumper-Debug-73a0bf2013eebff0f46b.json",
+					"name" : "memory_dumper",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "stealth::@dfe1bd2e9ea264deceba",
+					"jsonFile" : "target-stealth-Debug-49dfb3e0ebf2c1770fc1.json",
+					"name" : "stealth",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "systemlib::@efa04b192eb211bf4799",
+					"jsonFile" : "target-systemlib-Debug-9aad879281c6b4b4fc8d.json",
+					"name" : "systemlib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "unstealth::@2f4d320bf6f0113903e3",
+					"jsonFile" : "target-unstealth-Debug-f731607431b93e0d11dd.json",
+					"name" : "unstealth",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/justi/IdeaProjects/SysOps/src/main/c++/cmake-build-debug",
+		"source" : "C:/Users/justi/IdeaProjects/SysOps/src/main/c++"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

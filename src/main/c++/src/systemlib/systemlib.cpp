@@ -49,7 +49,6 @@ extern "C" {
         std::string str {s.c_str()};
         std::cout << "you have reached over here " << str << "\n";
         applyStealth(str);
-
     }
     // void SystemLib.applyStealthByPid(int pid)
     JNIEXPORT void JNICALL Java_SystemLib_applyStealthByPid(JNIEnv*, jobject, jint pid) {
@@ -58,8 +57,9 @@ extern "C" {
     }
 
 
-    // void SystemLib.memoryDumpByProcessName(str_process_exe);
-    JNIEXPORT void JNICALL Java_SystemLib_memoryDumpByProcessName(JNIEnv* env, jobject, jstring processExe) {
+
+    // void SystemLib.applyUnStealth(str_process_exe);
+    JNIEXPORT void JNICALL Java_SystemLib_applyUnStealth(JNIEnv* env, jobject, jstring processExe) {
 
         if (!processExe) return;
         const char* utf = env->GetStringUTFChars(processExe, nullptr);
@@ -67,7 +67,18 @@ extern "C" {
         env->ReleaseStringUTFChars(processExe, utf);
 
         std::string str {s.c_str()};
-        grabMemoryDump(str);
+        std::cout << "you have reached over here " << str << "\n";
+        applyUnStealth(str);
+    }
+
+
+    // void SystemLib.memoryDumpByProcessName(str_process_exe);
+    JNIEXPORT void JNICALL Java_SystemLib_memoryDumpByProcessName(JNIEnv* env, jobject, jstring processExe) {
+
+        const char* utf = env->GetStringUTFChars(processExe, nullptr);
+        std::string name(utf);
+        env->ReleaseStringUTFChars(processExe, utf);
+        grabMemoryDump(name);
 
     }
 } // extern "C"

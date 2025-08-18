@@ -2,10 +2,11 @@
 #include <iostream>
 #include "memory_dumper.h"
 
-const std::string dllStealthPath = "C:\\Users\\justi\\IdeaProjects\\SysOps\\src\\main\\c++\\target\\native\\stealth.dll";
-void applyStealth(const std::string_view str) {
+constexpr std::string_view dllStealthPath = "C:\\Users\\justi\\IdeaProjects\\SysOps\\src\\main\\c++\\target\\native\\stealth.dll";
 
-    if (!injectDLLIntoProcess(str, dllStealthPath)) {
+void applyStealth(const std::string_view processName) {
+
+    if (!injectDLLIntoProcess(processName, dllStealthPath)) {
         std::cerr << "[-] Stealth injection failed.\n";
     } else {
         std::cout << "[+] Stealth injection succeeded.\n";
@@ -21,13 +22,23 @@ void applyStealthByPid(const DWORD pid) {
     }
 }
 
+/*
+ * str is the processname
+ */
+void applyUnStealth(const std::string_view processName) {
+
+    constexpr std::string_view dllUnStealthPath = "C:\\Users\\justi\\IdeaProjects\\SysOps\\src\\main\\c++\\target\\native\\unstealth.dll";
+    if (!injectDLLIntoProcess(processName, dllUnStealthPath)) {
+        std::cerr << "[-] Stealth injection failed.\n";
+    } else {
+        std::cout << "[+] Stealth injection succeeded.\n";
+    }
+}
+
+
+
 void grabMemoryDump(const std::string_view str) {
 
     injectDLLIntoProcess(str, "C:\\Users\\justi\\IdeaProjects\\SysOps\\src\\main\\c++\\target\\native\\memory_dumper.dll");
 
 }
-
-
-
-
-

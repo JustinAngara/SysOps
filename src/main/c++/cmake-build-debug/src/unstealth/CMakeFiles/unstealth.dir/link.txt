@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2025.1.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\unstealth.dir/objects.a
+C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\ar.exe qc CMakeFiles\unstealth.dir/objects.a @CMakeFiles\unstealth.dir\objects1.rsp
+C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE -g -shared -o libunstealth.dll -Wl,--out-implib,libunstealth.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\unstealth.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\unstealth.dir\linkLibs.rsp

@@ -11,6 +11,7 @@
 
 void applyStealth(const std::string_view str);
 void applyStealthByPid(const DWORD pid);
+void applyUnStealth(const std::string_view processName);
 void grabMemoryDump(const std::string_view str);
 
 #endif //ACTION_HANDLER_H

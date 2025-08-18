@@ -7,9 +7,8 @@ import java.io.File;
 public class SystemLib {
     static {
         try {
-            String projectPath = System.getProperty("user.dir");
-            String dllPath = projectPath + "\\src\\main\\c++\\target\\native\\systemlib.dll";
-            System.load(dllPath);
+
+            System.load("C:\\Users\\justi\\IdeaProjects\\SysOps\\src\\main\\c++\\target\\native\\systemlib.dll");
 
         } catch (UnsatisfiedLinkError e) {
             throw e;
@@ -18,6 +17,7 @@ public class SystemLib {
 
     // Native method declarations
     public native void applyStealth(String processExe);
+    public native void applyUnStealth(String processExe);
     public native void applyStealthByPid(int n);
     public native void memoryDumpByProcessName(String processExe);
 //    this will test some of the libraries
@@ -27,7 +27,8 @@ public class SystemLib {
             SystemLib lib = new SystemLib();
 //            lib.applyStealth("notepad.exe");
 //            lib.applyStealthByPid(31540);
-            lib.memoryDumpByProcessName("notepad.exe");
+//            lib.memoryDumpByProcessName("notepad.exe")
+            lib.applyUnStealth("notepad.exe");
         } catch (Exception e) {
             e.printStackTrace();
         }

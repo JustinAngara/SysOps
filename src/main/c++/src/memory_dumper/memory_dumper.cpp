@@ -1,57 +1,56 @@
-// memory_dumper.cpp
+// src/memory_dumper/memory_dumper.cpp
 #include <windows.h>
-#include <tlhelp32.h>
-#include <psapi.h>
-#include <fstream>
 #include <vector>
-#include <string>
+#include <fstream>
 
-bool DumpProcessMemory(const std::string& processName, const std::string& outPath) {
-    DWORD pid = 0;
+static void dumpAllMemoryOfCurrentProcess(const char* outPath) {
+    HANDLE hProc = GetCurrentProcess();
 
-    HANDLE snapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-    PROCESSENTRY32 pe = { sizeof(pe) };
+    SYSTEM_INFO si{};
+    GetSystemInfo(&si);
 
-    if (Process32First(snapshot, &pe)) {
-        do {
-            if (_stricmp(pe.szExeFile, processName.c_str()) == 0) {
-                pid = pe.th32ProcessID;
-                break;
-            }
-        } while (Process32Next(snapshot, &pe));
-    }
-    CloseHandle(snapshot);
+    std::ofstream out(outPath, std::ios::binary);
+    if (!out) return;
 
-    if (pid == 0) return false;
+    MEMORY_BASIC_INFORMATION mbi{};
+    BYTE* addr = static_cast<BYTE*>(si.lpMinimumApplicationAddress);
 
-    HANDLE hProcess = OpenProcess(PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, FALSE, pid);
-    if (!hProcess) return false;
-
-    SYSTEM_INFO sysInfo;
-    GetSystemInfo(&sysInfo);
-
-    std::ofstream dumpFile(outPath, std::ios::binary);
-    if (!dumpFile) return false;
-
-    MEMORY_BASIC_INFORMATION mbi;
-    LPBYTE addr = (LPBYTE)sysInfo.lpMinimumApplicationAddress;
-
-    while (addr < sysInfo.lpMaximumApplicationAddress) {
-        if (VirtualQueryEx(hProcess, addr, &mbi, sizeof(mbi)) == sizeof(mbi)) {
-            if (mbi.State == MEM_COMMIT && (mbi.Type == MEM_PRIVATE || mbi.Type == MEM_IMAGE)) {
-                std::vector<char> buffer(mbi.RegionSize);
-                SIZE_T bytesRead;
-                if (ReadProcessMemory(hProcess, addr, buffer.data(), mbi.RegionSize, &bytesRead)) {
-                    dumpFile.write(buffer.data(), bytesRead);
-                }
-            }
-            addr += mbi.RegionSize;
-        } else {
-            break;
+    while (addr < static_cast<BYTE*>(si.lpMaximumApplicationAddress)) {
+        if (VirtualQuery(addr, &mbi, sizeof(mbi)) != sizeof(mbi)) {
+            addr += 0x1000;
+            continue;
         }
-    }
 
-    CloseHandle(hProcess);
-    dumpFile.close();
-    return true;
+        bool readable =
+            (mbi.State == MEM_COMMIT) &&
+            !(mbi.Protect & (PAGE_NOACCESS | PAGE_GUARD));
+
+        if (readable) {
+            std::vector<char> buffer(mbi.RegionSize);
+            SIZE_T bytesRead = 0;
+            if (ReadProcessMemory(
+                    hProc,
+                    mbi.BaseAddress,              // LPCVOID
+                    buffer.data(),                // LPVOID
+                    buffer.size(),                // SIZE_T
+                    &bytesRead)) {                // SIZE_T*
+                out.write(buffer.data(), static_cast<std::streamsize>(bytesRead));
+                    }
+        }
+
+        addr = static_cast<BYTE*>(mbi.BaseAddress) + mbi.RegionSize;
+    }
+}
+
+DWORD WINAPI DumpThread(LPVOID) {
+    dumpAllMemoryOfCurrentProcess("C:\\temp\\dump.bin");
+    return 0;
+}
+
+BOOL APIENTRY DllMain(HMODULE h, DWORD reason, LPVOID) {
+    if (reason == DLL_PROCESS_ATTACH) {
+        DisableThreadLibraryCalls(h);
+        CreateThread(nullptr, 0, DumpThread, nullptr, 0, nullptr);
+    }
+    return TRUE;
 }

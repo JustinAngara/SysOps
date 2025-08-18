@@ -186,6 +186,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{52E8D85A-67D7-374A-BD8E-FDE9EDA6A703}</Project>
       <Name>systemlib</Name>
     </ProjectReference>
+    <ProjectReference Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\build\src\unstealth\unstealth.vcxproj">
+      <Project>{DE1E2A60-83EC-3BB7-94FF-60A61C32F5E5}</Project>
+      <Name>unstealth</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

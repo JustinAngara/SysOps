@@ -59,25 +59,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\justi\IdeaProjects\SysOps\src\main\c++\build\src\stealth\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\justi\IdeaProjects\SysOps\src\main\c++\target\native\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stealth.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stealth</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\justi\IdeaProjects\SysOps\src\main\c++\build\src\stealth\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\justi\IdeaProjects\SysOps\src\main\c++\target\native\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stealth.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stealth</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\justi\IdeaProjects\SysOps\src\main\c++\build\src\stealth\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\justi\IdeaProjects\SysOps\src\main\c++\target\native\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">stealth.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">stealth</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.dll</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\justi\IdeaProjects\SysOps\src\main\c++\build\src\stealth\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\justi\IdeaProjects\SysOps\src\main\c++\target\native\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">stealth.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">stealth</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.dll</TargetExt>
@@ -125,7 +125,7 @@
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/Debug/stealth.dll C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native/stealth.dll C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -144,7 +144,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/Debug/stealth.lib</ImportLibrary>
       <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/Debug/stealth.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native/stealth.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem></SubSystem>
     </Link>
@@ -193,7 +193,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/Release/stealth.dll C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native/stealth.dll C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -212,7 +212,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/Release/stealth.lib</ImportLibrary>
       <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/Release/stealth.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native/stealth.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem></SubSystem>
     </Link>
@@ -261,7 +261,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/MinSizeRel/stealth.dll C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native/MinSizeRel/stealth.dll C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -280,7 +280,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/MinSizeRel/stealth.lib</ImportLibrary>
       <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/MinSizeRel/stealth.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native/MinSizeRel/stealth.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem></SubSystem>
     </Link>
@@ -328,7 +328,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Command>setlocal
 "C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
 if %errorlevel% neq 0 goto :cmEnd
-"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/RelWithDebInfo/stealth.dll C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
+"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native/RelWithDebInfo/stealth.dll C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -347,7 +347,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ImageHasSafeExceptionHandlers></ImageHasSafeExceptionHandlers>
       <ImportLibrary>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/RelWithDebInfo/stealth.lib</ImportLibrary>
       <LinkErrorReporting></LinkErrorReporting>
-      <ProgramDataBaseFile>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/RelWithDebInfo/stealth.pdb</ProgramDataBaseFile>
+      <ProgramDataBaseFile>C:/Users/justi/IdeaProjects/SysOps/src/main/c++/target/native/RelWithDebInfo/stealth.pdb</ProgramDataBaseFile>
       <RandomizedBaseAddress></RandomizedBaseAddress>
       <SubSystem></SubSystem>
     </Link>
