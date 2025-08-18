@@ -422,6 +422,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\action_handler.h" />
     <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\stealth.cpp" />
     <ClInclude Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\stealth.h" />
+    <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\process_inject.cpp" />
+    <ClInclude Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\process_inject.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

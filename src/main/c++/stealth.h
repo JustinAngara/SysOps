@@ -7,10 +7,5 @@
 
 
 
-class stealth {
-
-};
-
-
 
 #endif //STEALTH_H

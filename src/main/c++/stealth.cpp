@@ -1,4 +1,5 @@
 // stealth.cpp
+#include <string_view>
 #include <windows.h>
 #include <tlhelp32.h>
 
@@ -39,3 +40,4 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID) {
     }
     return TRUE;
 }
+

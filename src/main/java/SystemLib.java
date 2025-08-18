@@ -21,7 +21,7 @@ public class SystemLib {
     public void test(){
         try {
             SystemLib lib = new SystemLib();
-            lib.applyStealth("discord.exe");
+            lib.applyStealth("notepad.exe");
         } catch (Exception e) {
             e.printStackTrace();
         }
