@@ -1,144 +1,180 @@
-✅ GOAL:
+✅ GOAL (Updated)
 
-Inject stealth.dll into a target process by PID, from Java, using JNI and native C++ code. The injected DLL will call SetWindowDisplayAffinity to make the target window hidden from screen capture tools.
+Inject either stealth.dll or memory_dumper.dll into a target process by PID or process name, using Java + JNI + native C++.
+
+stealth.dll: Makes the target window invisible to screen recording tools.
+
+memory_dumper.dll: Dumps a target process's memory to disk in hex or disassembly format.
 
 🧱 FILE STRUCTURE SUMMARY
 /src/main/c++
-├── action_handler.h         // Declares C++ injection interface
-├── action_handler.cpp       // Implements injection wrapper function used by JNI
-├── process_inject.h         // Declares low-level DLL injection API
-├── process_inject.cpp       // Implements DLL injection logic using CreateRemoteThread
-├── systemlib.cpp            // JNI bridge: exposes native method to Java
-└── stealth.cpp              // Injected DLL: runs inside target process and applies stealth
+├── CMakeLists.txt                 <-- Top-level builder for all DLLs
+├── build_all.bat                 <-- Recompiles everything cleanly
+├── target/native/                <-- All compiled DLLs output here
 
-🔍 FILE-BY-FILE BREAKDOWN
+/src/main/c++/src/
+├── systemlib/                    <-- JNI and injection wrapper logic
+│   ├── systemlib.cpp             <-- JNI bridge
+│   ├── action_handler.cpp/h      <-- JNI -> Injection delegation
+│   ├── process_inject.cpp/h      <-- Raw Windows DLL injection engine
+
+├── stealth/                      <-- stealth.dll injected code
+│   └── stealth.cpp
+
+├── memory_dumper/                <-- memory_dumper.dll injected code
+│   └── memory_dumper.cpp
+
+🔍 FILE-BY-FILE BREAKDOWN (Updated)
 ✅ action_handler.h
 void applyStealthByPid(DWORD pid);
+void memoryDumpByProcessName(const std::string& processName);
 
 
-Declares your top-level injection function used from JNI.
-
-This is your clean interface between JNI and your internal C++ logic.
+Declares top-level C++ methods JNI will call.
 
 ✅ action_handler.cpp
-#include "action_handler.h"
 #include "process_inject.h"
 
 void applyStealthByPid(DWORD pid) {
-    std::string dllPath = "C:\\Path\\To\\stealth.dll";
-    injectDLLIntoPid(pid, dllPath);
+    injectDLLIntoPid(pid, "C:\\Path\\To\\stealth.dll");
+}
+
+void memoryDumpByProcessName(const std::string& proc) {
+    DWORD pid = findPidByName(proc);
+    if (pid) {
+        injectDLLIntoPid(pid, "C:\\Path\\To\\memory_dumper.dll");
+    }
 }
 
 
-Implements applyStealthByPid, wrapping your DLL injection logic.
-
-It builds the path to the DLL and delegates to injectDLLIntoPid(...).
+Wraps DLL injection logic to be Java-callable.
 
 ✅ process_inject.h
-#pragma once
-#include <string_view>
-#include <windows.h>
-
 bool injectDLLIntoPid(DWORD pid, const std::string_view dllPath);
+DWORD findPidByName(const std::string& name);
 
 
-Declares the low-level injector function.
-
-This is the core that uses OpenProcess, WriteProcessMemory, and CreateRemoteThread.
+Handles Windows API interaction.
 
 ✅ process_inject.cpp
-#include "process_inject.h"
-
 bool injectDLLIntoPid(DWORD pid, const std::string_view dllPath) {
-    // Open the process
-    // Allocate memory for the DLL path
-    // Write the DLL path to target process
-    // Call LoadLibraryA in the remote process via CreateRemoteThread
+    // OpenProcess
+    // Allocate memory for DLL path
+    // Write DLL path into remote process
+    // CreateRemoteThread with LoadLibraryA
 }
 
 
-This is the injection engine.
-
-It does the actual work of injecting the DLL into the target process using the Windows API.
+Responsible for injecting any .dll into a process via PID.
 
 ✅ systemlib.cpp
-#include <jni.h>
-#include "action_handler.h"
-
 extern "C" JNIEXPORT void JNICALL Java_SystemLib_applyStealthByPid(JNIEnv*, jobject, jint pid) {
     applyStealthByPid(static_cast<DWORD>(pid));
 }
 
+extern "C" JNIEXPORT void JNICALL Java_SystemLib_memoryDumpByProcessName(JNIEnv* env, jobject, jstring name) {
+    const char* raw = env->GetStringUTFChars(name, nullptr);
+    memoryDumpByProcessName(raw);
+    env->ReleaseStringUTFChars(name, raw);
+}
 
-JNI bridge that connects your Java method to C++.
 
-JNI calls applyStealthByPid(...), which starts the injection.
+JNI bridge. Java → C++ → Injector.
 
-✅ stealth.cpp (DLL to Inject)
-#include <windows.h>
-
+✅ stealth.cpp
 DWORD WINAPI StealthThread(LPVOID) {
-    HWND hwnd = FindMainWindow();
-    SetWindowDisplayAffinity(hwnd, 0x11); // WDA_EXCLUDEFROMCAPTURE
+    HWND hwnd = FindMainWindow(); // Your FindWindow logic here
+    SetWindowDisplayAffinity(hwnd, 0x11);
     return 0;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID) {
     if (reason == DLL_PROCESS_ATTACH) {
-        DisableThreadLibraryCalls(hModule);
         CreateThread(nullptr, 0, StealthThread, nullptr, 0, nullptr);
     }
     return TRUE;
 }
 
+✅ memory_dumper.cpp
+DWORD WINAPI DumpThread(LPVOID) {
+    HANDLE hProcess = GetCurrentProcess();
+    dumpAllMemory(hProcess);  // Your hex-dump logic here
+    return 0;
+}
 
-This DLL is injected into the target process.
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID) {
+    if (reason == DLL_PROCESS_ATTACH) {
+        CreateThread(nullptr, 0, DumpThread, nullptr, 0, nullptr);
+    }
+    return TRUE;
+}
 
-It finds the target window and calls SetWindowDisplayAffinity to hide it from screen sharing/recording.
-
-🔗 How Everything Works Together
-
-✅ Java App calls:
-
+🔗 FLOW OF EXECUTION
+✅ Java Calls
 SystemLib.applyStealthByPid(16388);
+SystemLib.memoryDumpByProcessName("target.exe");
+
+✅ JNI C++ Bridges
+
+Java_SystemLib_applyStealthByPid → applyStealthByPid(pid)
+
+Java_SystemLib_memoryDumpByProcessName → memoryDumpByProcessName(name)
+
+✅ DLL Injected
+
+injectDLLIntoPid(...)
+
+Calls CreateRemoteThread(LoadLibraryA) on remote process
+
+✅ Inside Target Process
+
+DllMain runs
+
+Spawns background thread
+
+Thread runs logic:
+
+stealth.dll → calls SetWindowDisplayAffinity(...)
+
+memory_dumper.dll → calls dumpAllMemory(...)
+
+🛠️ CMake & Build
+🧾 Top-level CMakeLists.txt
+
+Compiles each DLL separately:
+
+cmake_minimum_required(VERSION 3.15)
+project(SysOps)
+
+add_subdirectory(src/systemlib)
+add_subdirectory(src/stealth)
+add_subdirectory(src/memory_dumper)
 
 
-✅ JNI calls:
+Each subfolder (e.g., src/stealth/CMakeLists.txt) contains its own:
 
-Java_SystemLib_applyStealthByPid → applyStealthByPid(DWORD)
+add_library(stealth SHARED stealth.cpp)
+
+add_custom_command(TARGET stealth POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_SOURCE_DIR}/target/native"
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different "$<TARGET_FILE:stealth>" "${CMAKE_SOURCE_DIR}/target/native"
+)
 
 
-✅ applyStealthByPid(...) builds the path to stealth.dll, then calls:
+Same for memory_dumper.
 
-injectDLLIntoPid(pid, dllPath);
+⚙️ To Build Everything
+1. Run:
+./build_all.bat
 
+2. Output DLLs go to:
+/src/main/c++/target/native/
 
-✅ injectDLLIntoPid(...):
+3. Java loads them from there.
+🧠 Notes
 
-Opens the target process
-
-Allocates memory for the DLL path
-
-Writes the path
-
-Calls LoadLibraryA(...) in remote process
-
-✅ Inside the target process:
-
-stealth.dll runs via DllMain
-
-It spawns StealthThread
-
-That thread finds the main window and sets SetWindowDisplayAffinity(hwnd, 0x11)
-
-✅ The target process window is now hidden from screen recording tools.
-
-🧠 Notes & Extras
-
-✅ Modular: C++ is cleanly separated into reusable components.
-
-✅ JNI-compliant: No overloaded native functions — applyStealthByPid is uniquely named.
-
-✅ Windows API compliant: Uses VirtualAllocEx, WriteProcessMemory, and CreateRemoteThread — no third-party dependencies.
-
-⚠️ Permissions: You must run the Java app and injector as Administrator if the target process is elevated.
+✅ Modular → You can inject any.dll into any process.
+✅ Safe paths → All paths absolute.
+✅ Admin → Always run with elevated permissions.
+✅ Build isolation → Each DLL is built in its own CMake module.
+✅ Easy injection → injectDLLIntoPid(...) used universally.

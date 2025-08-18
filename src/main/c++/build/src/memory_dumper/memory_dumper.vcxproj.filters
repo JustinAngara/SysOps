@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\src\memory_dumper\memory_dumper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\src\memory_dumper\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{5D0E6F84-384B-365E-A565-F04444FCF1FC}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

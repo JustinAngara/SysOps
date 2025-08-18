@@ -8,7 +8,7 @@ public class CommandRegistry {
 
     static {
         arrowCommands.put("stealth", new StealthCommand());
-        exclamationCommands.put("important", new ImportantCommand());
+        arrowCommands.put("memorydump", new MemoryDumpCommand());
 
     }
 

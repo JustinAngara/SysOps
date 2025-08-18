@@ -1,3 +1,5 @@
-C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/CMakeFiles/systemlib.dir
 C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/CMakeFiles/ALL_BUILD.dir
 C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/systemlib/CMakeFiles/systemlib.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/CMakeFiles/stealth.dir
+C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/memory_dumper/CMakeFiles/memory_dumper.dir

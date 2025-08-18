@@ -1,7 +1,10 @@
 {
 	"InstallScripts" : 
 	[
-		"C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/cmake_install.cmake"
+		"C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/cmake_install.cmake",
+		"C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/systemlib/cmake_install.cmake",
+		"C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/stealth/cmake_install.cmake",
+		"C:/Users/justi/IdeaProjects/SysOps/src/main/c++/build/src/memory_dumper/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

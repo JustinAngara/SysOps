@@ -1,0 +1,16 @@
+//
+// Created by justi on 8/17/2025.
+//
+
+#ifndef ACTION_HANDLER_H
+#define ACTION_HANDLER_H
+
+
+#include <string_view>
+#include "process_inject.h"
+
+void applyStealth(const std::string_view str);
+void applyStealthByPid(const DWORD pid);
+void grabMemoryDump(const std::string_view str);
+
+#endif //ACTION_HANDLER_H
