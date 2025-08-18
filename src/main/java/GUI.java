@@ -39,14 +39,8 @@ public class GUI extends JFrame {
 
         setAlwaysOnTop(true);
 
-        // Make frame transparent
-        setOpacity(0.9f);
-
-        // Set background color with transparency supportf
-        setBackground(new Color(0, 0, 0, 144));
-
         // Use a dark theme background
-        getContentPane().setBackground(new Color(30, 30, 40, 230));
+        getContentPane().setBackground(new Color(30, 30, 40));
 
         // Store normal bounds for maximize/restore functionality
         normalBounds = getBounds();
@@ -59,7 +53,7 @@ public class GUI extends JFrame {
         // Output area at top left
         outputArea = new JTextArea();
         outputArea.setEditable(false);
-        outputArea.setBackground(new Color(40, 40, 50, 200));
+        outputArea.setBackground(new Color(40, 40, 50));
         outputArea.setForeground(new Color(220, 220, 220));
         outputArea.setFont(new Font("Consolas", Font.PLAIN, 12));
         outputArea.setBorder(new EmptyBorder(10, 10, 10, 10));
@@ -69,7 +63,7 @@ public class GUI extends JFrame {
 
         // Input field at bottom
         inputField = new JTextField();
-        inputField.setBackground(new Color(50, 50, 60, 200));
+        inputField.setBackground(new Color(50, 50, 60));
         inputField.setForeground(new Color(255, 255, 255));
         inputField.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         inputField.setBorder(BorderFactory.createCompoundBorder(
@@ -80,7 +74,7 @@ public class GUI extends JFrame {
 
         // Submit button
         submitButton = new JButton("Submit");
-        submitButton.setBackground(new Color(70, 130, 180, 200));
+        submitButton.setBackground(new Color(70, 130, 180));
         submitButton.setForeground(Color.WHITE);
         submitButton.setFont(new Font("Segoe UI", Font.BOLD, 11));
         submitButton.setBorder(BorderFactory.createCompoundBorder(
@@ -93,10 +87,10 @@ public class GUI extends JFrame {
         // Add hover effect
         submitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                submitButton.setBackground(new Color(90, 150, 200, 220));
+                submitButton.setBackground(new Color(90, 150, 200));
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                submitButton.setBackground(new Color(70, 130, 180, 200));
+                submitButton.setBackground(new Color(70, 130, 180));
             }
         });
     }
@@ -158,7 +152,7 @@ public class GUI extends JFrame {
 
     private void createTitleBar() {
         titleBar = new JPanel(new BorderLayout());
-        titleBar.setBackground(new Color(45, 45, 55, 230));
+        titleBar.setBackground(new Color(45, 45, 55));
         titleBar.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, new Color(100, 100, 120)));
         titleBar.setPreferredSize(new Dimension(0, 30));
 
@@ -189,7 +183,7 @@ public class GUI extends JFrame {
         JButton button = new JButton(text);
         button.setFont(new Font("Segoe UI", Font.BOLD, 14));
         button.setForeground(new Color(200, 200, 200));
-        button.setBackground(new Color(60, 60, 70, 150));
+        button.setBackground(new Color(60, 60, 70));
         button.setBorder(null);
         button.setFocusPainted(false);
         button.setPreferredSize(new Dimension(26, 26));
@@ -273,7 +267,7 @@ public class GUI extends JFrame {
 
     // Helper method to process input (override in subclasses)
     protected void processInput(String input) {
-        appendOutput("Processed: " + input.toUpperCase());
+        CLICommunication.processCommand(input);
     }
 
     // Helper Methods for Output Management
