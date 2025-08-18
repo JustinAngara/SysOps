@@ -21,14 +21,11 @@ public class SystemLib {
     public void test(){
         try {
             SystemLib lib = new SystemLib();
-            lib.applyStealth("fuckyea.exe");
+            lib.applyStealth("discord.exe");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-
-
 
     public static void main(String[] args){
         SystemLib s = new SystemLib();

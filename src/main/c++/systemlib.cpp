@@ -46,7 +46,7 @@ extern "C" {
         env->ReleaseStringUTFChars(processExe, utf);
 
         std::string str {s.c_str()};
-        std::cout << "you have reached over here " << str << \n;
+        std::cout << "you have reached over here " << str << "\n";
         applyStealth(str);
 
     }

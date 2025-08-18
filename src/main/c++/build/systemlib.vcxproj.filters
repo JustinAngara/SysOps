@@ -7,9 +7,15 @@
     <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\action_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\stealth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\action_handler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\justi\IdeaProjects\SysOps\src\main\c++\stealth.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
