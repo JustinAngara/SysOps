@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <string>
 #include "action_handler.h"
+#include "process_inject.h"
 // Signatures must MATCH the Java class + method names exactly.
 // Format: Java_<Class>_<method>
 // (No package here because SystemLib is in the default package.)
@@ -50,4 +51,11 @@ extern "C" {
         applyStealth(str);
 
     }
+    // void SystemLib.applyStealthByPid(int pid)
+    JNIEXPORT void JNICALL Java_SystemLib_applyStealthByPid(JNIEnv*, jobject, jint pid) {
+        DWORD nativePid = static_cast<DWORD>(pid);
+        applyStealthByPid(nativePid);
+    }
+
+
 } // extern "C"

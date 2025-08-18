@@ -14,7 +14,7 @@ public class SystemLib {
 
     // Native method declarations
     public native void applyStealth(String processExe);
-
+    public native void applyStealthByPid(int n);
 
 //    this will test some of the libraries
     @SuppressWarnings("unused")
@@ -22,6 +22,7 @@ public class SystemLib {
         try {
             SystemLib lib = new SystemLib();
             lib.applyStealth("notepad.exe");
+            lib.applyStealthByPid(31540);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,8 +7,10 @@
 
 
 #include <string_view>
-void applyStealth(const std::string_view str);
+#include "process_inject.h"
 
+void applyStealth(const std::string_view str);
+void applyStealthByPid(const DWORD pid);
 
 
 #endif //ACTION_HANDLER_H
