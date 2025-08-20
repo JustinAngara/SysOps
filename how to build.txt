@@ -6,5 +6,5 @@ cmake --build . --config Debug
 
 # 3. Restart your Java application
 cd "C:\Users\justi\IdeaProjects\SysOps\src\main\java"
-java SystemLib
+java com.sysops.functions.SystemLib
 

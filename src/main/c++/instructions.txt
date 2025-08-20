@@ -1,0 +1,6 @@
+cd C:\Users\justi\IdeaProjects\SysOps\src\main\c++
+Remove-Item -Recurse -Force .\build -ErrorAction Ignore
+mkdir build
+cd build
+cmake ..
+cmake --build . --config Debug

@@ -111,8 +111,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID) {
 
 🔗 FLOW OF EXECUTION
 ✅ Java Calls
-SystemLib.applyStealthByPid(16388);
-SystemLib.memoryDumpByProcessName("target.exe");
+com.sysops.functions.SystemLib.applyStealthByPid(16388);
+com.sysops.functions.SystemLib.memoryDumpByProcessName("target.exe");
 
 ✅ JNI C++ Bridges
 
