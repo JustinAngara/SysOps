@@ -20,7 +20,9 @@ public class SystemLib {
     public native void applyUnStealth(String processExe);
     public native void applyStealthByPid(int n);
     public native void memoryDumpByProcessName(String processExe);
-//    this will test some of the libraries
+
+
+    //    this will test some of the libraries
     @SuppressWarnings("unused")
     public void test(){
         try {

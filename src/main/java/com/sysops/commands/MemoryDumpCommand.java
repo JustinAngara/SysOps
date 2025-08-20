@@ -1,6 +1,5 @@
-package com.sysops.functions;
+package com.sysops.commands;
 
-import com.sysops.commands.CLICommand;
 import com.sysops.main.Main;
 
 public class MemoryDumpCommand implements CLICommand {

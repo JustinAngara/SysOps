@@ -157,7 +157,7 @@ public class GUI extends JFrame {
         titleBar.setPreferredSize(new Dimension(0, 30));
 
         // Title label
-        JLabel titleLabel = new JLabel("LOG Handler");
+        JLabel titleLabel = new JLabel("SysOps");
         titleLabel.setForeground(new Color(220, 220, 220));
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
         titleLabel.setBorder(new EmptyBorder(0, 10, 0, 0));
