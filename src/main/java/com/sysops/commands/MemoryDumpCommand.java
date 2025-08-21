@@ -19,8 +19,10 @@ public class MemoryDumpCommand implements CLICommand {
 
         // load memory dump here
 
-        Main.g.appendOutput("[>] Performing memory dump on "+processName);
+        Main.lib.memoryDumpByProcessName(processName);
 
+        Main.g.appendOutput("[>] Performing memory dump on "+processName);
+        Main.g.appendOutput("Saving in downloads folder");
 
     }
 }

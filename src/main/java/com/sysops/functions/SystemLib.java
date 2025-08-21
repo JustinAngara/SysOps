@@ -30,7 +30,8 @@ public class SystemLib {
 //            lib.applyStealth("notepad.exe");
 //            lib.applyStealthByPid(31540);
 //            lib.memoryDumpByProcessName("notepad.exe")
-            lib.applyUnStealth("notepad.exe");
+//            lib.applyUnStealth("notepad.exe");
+//            memoryDumpByProcessName("spotify.exe");
         } catch (Exception e) {
             e.printStackTrace();
         }
